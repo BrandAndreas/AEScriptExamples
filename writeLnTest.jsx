@@ -1,0 +1,1 @@
+writeLn(app.isoLanguage.slice(0,2));

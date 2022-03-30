@@ -67,14 +67,14 @@
 	rd_ScriptLauncherData.scriptPath = "";
 	rd_ScriptLauncherData.scriptFiles = new Array();
 	
-	rd_ScriptLauncherData.strScriptsFolder = {en: "Folder..."};
-	rd_ScriptLauncherData.strShowPaths = {en: "Show paths"};
-	rd_ScriptLauncherData.strRefreshList = {en: "Refresh"};
-	rd_ScriptLauncherData.strRun = {en: "Run"};
-	rd_ScriptLauncherData.strHelp = {en: "?"};
-	rd_ScriptLauncherData.strErrNoScriptsPath = {en: "Cannot open the palette because the Scripts folder could not be located."};
-	rd_ScriptLauncherData.strErrMissingFile = {en: "Cannot locate the selected script."};
-	rd_ScriptLauncherData.strMinAE100 = {en: "This script requires Adobe After Effects CS5 or later."};
+	rd_ScriptLauncherData.strScriptsFolder = {en: "Folder...", de: "Ordner..."};
+	rd_ScriptLauncherData.strShowPaths = {en: "Show paths", de: "Zeige Pfade"};
+	rd_ScriptLauncherData.strRefreshList = {en: "Refresh", de: "Erneuern"};
+	rd_ScriptLauncherData.strRun = {en: "Run", de: "Run"};
+	rd_ScriptLauncherData.strHelp = {en: "?", de: "?"};
+	rd_ScriptLauncherData.strErrNoScriptsPath = {en: "Cannot open the palette because the Scripts folder could not be located.", de: "Ich kann das Fenster nicht öffnen, weil der Sript-Ordner nicht gefunden werden kann."};
+	rd_ScriptLauncherData.strErrMissingFile = {en: "Cannot locate the selected script.", de: "Ich kann das Skript nicht finden."};
+	rd_ScriptLauncherData.strMinAE100 = {en: "This script requires Adobe After Effects CS5 or later.", de: "Das Skript benötigt mindestens After Effects CS5."};
 	rd_ScriptLauncherData.strHelpText = 
 	{
 		en: "Copyright (c) 2005-2013 redefinery (Jeffrey R. Almasol). \n" +
@@ -88,7 +88,19 @@
 		"\n" +
 		"Note: This version of the script requires After Effects CS5 or later. It can be used as a dockable panel by placing the script in a ScriptUI Panels subfolder of the Scripts folder, and then choosing this script from the Window menu.\n" +
 		"\n" +
-		"Enhancements requested by Russ Maehl, Julian Herrera, and Navarro Parker."
+		"Enhancements requested by Russ Maehl, Julian Herrera, and Navarro Parker.",
+		de: "Copyright (c) 2005-2013 redefinery (Jeffrey R. Almasol). \n" +
+		"Alle Rechte vorbehalten.\n" +
+		"\n" +
+		"Dieses Skript zeigt alle Skripte in einem Ordner (und dessen Unterordner). Nur Skripte mit den Endungen .js, .jsx, jsxbin werden angezeigt. Doppelt klicken um ein Skript zu starten. Skripte in einem Unterordner in runden Klammern werden ignoriert. Der Skript-Ordner kann jederzeit geändert werden und die Skript Liste kann erneuert werden, wenn der Ordner-Inhalt sich geändert hat. Der ausgewählte Ordner wird in den Settings gespeichert, so dass er beim nächsten Mal nicht wieder ausgewählt werden muss\n" +
+		"\n" +
+		"Achtung: Das Fenster kann keine Fehler in den Skripten finden. Es ist nur zum schnellen Starten von Skripten gedacht.\n" +
+		"\n" + 
+		"Wenn eine PGN-Datei mit dem gleichen Namen im gleichen Ordner wie die Skript-Datei sich befindet, erscheint es neben dem Skript-Namen in der Liste.\n" + 
+		"\n" +
+		"Achtung: Das Skript kann als andockbares Fenster genutzt werden. Dazu muss die Datei im SriptUI Panels Unterordner des Skript-Ordners kopiert werden.\n" +
+		"\n" +
+		"Erweiterung angefordert von Russ Maehl, Julian Herrera, and Navarro Parker."
 	};
 	
 	
@@ -107,7 +119,8 @@
 	//
 	function rd_ScriptLauncher_localize(strVar)
 	{
-		return strVar["en"];
+		var lang = app.isoLanguage.slice(0,2);
+        return strVar[lang];
 	}
 	
 	
