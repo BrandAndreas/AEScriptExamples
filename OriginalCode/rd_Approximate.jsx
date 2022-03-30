@@ -61,32 +61,44 @@
     rd_ApproximateData.scriptName = "rd: Approximate";
     rd_ApproximateData.scriptTitle = rd_ApproximateData.scriptName + " v1.0";
     
-    rd_ApproximateData.strType = {en: "Proxy Type:"};
-    rd_ApproximateData.strTypeOpts = {en: '["Still", "Movie", "File", "Placeholder", "Sequence"]'};
-    rd_ApproximateData.strRSTemplate = {en: "Render Settings Template:"};
-    rd_ApproximateData.strOMTemplate = {en: "Output Module Template:"};
-    rd_ApproximateData.strRefresh = {en: "Refresh"};
-    rd_ApproximateData.strOutFolder = {en: "Output Folder:"};
-    rd_ApproximateData.strOutFolderBrowse = {en: "Browse..."};
-    rd_ApproximateData.strOutName = {en: "Output Name Template:"}
-    rd_ApproximateData.strUseSourceNameForProxy = {en: "Use source name for proxy"};
-    rd_ApproximateData.strSetProxy = {en: "Set Proxy"};
-    rd_ApproximateData.strSetProxyMore = {en: "Set Proxy..."};
-    rd_ApproximateData.strUnsetProxy = {en: "Unset Proxy"};
-    rd_ApproximateData.strFileTitle = {en: "Select the file to use as a proxy"};
-    rd_ApproximateData.strSelectProxyFolder = {en: "Select the folder for storing rendered proxies."};
-    rd_ApproximateData.strHelp = {en: "?"};
-    rd_ApproximateData.strNoItemToProxy = {en: "Please select at least one footage or composition item, then try again."};
-    rd_ApproximateData.strNoProxiedItemToUnset = {en: "Please select at least one proxied item, then try again."};
-    rd_ApproximateData.strErrGetTpls = {en: "Couldn't retrieve the list of render settings and output module templates."};
-    rd_ApproximateData.strErrRenameProxy = {en: "Could not rename proxy file to '%1'."};
-    rd_ApproximateData.strMinAE100 = {en: "This script requires Adobe After Effects CS5 or later."};
+    rd_ApproximateData.strType = {en: "Proxy Type:", de: "Proxy Typ:"};
+    rd_ApproximateData.strTypeOpts = {en: '["Still", "Movie", "File", "Placeholder", "Sequence"]', de: '["Still", "Movie", "File", "Placeholder", "Sequence"]'};
+    rd_ApproximateData.strRSTemplate = {en: "Render Settings Template:", de: "Render Settings Template:"};
+    rd_ApproximateData.strOMTemplate = {en: "Output Module Template:", de: "Output Module Template:"};
+    rd_ApproximateData.strRefresh = {en: "Refresh", de: "Erneuern"};
+    rd_ApproximateData.strOutFolder = {en: "Output Folder:", de: "Datei Ordner:"};
+    rd_ApproximateData.strOutFolderBrowse = {en: "Browse...", de: "Suchen..."};
+    rd_ApproximateData.strOutName = {en: "Output Name Template:", de: "Output Name Template:"}
+    rd_ApproximateData.strUseSourceNameForProxy = {en: "Use source name for proxy", de: "Nutze Dateinamen für Proxy"};
+    rd_ApproximateData.strSetProxy = {en: "Set Proxy", de: "Setze Proxy"};
+    rd_ApproximateData.strSetProxyMore = {en: "Set Proxy...", de: "Setze Proxy..."};
+    rd_ApproximateData.strUnsetProxy = {en: "Unset Proxy", de: "Löse Proxy"};
+    rd_ApproximateData.strFileTitle = {en: "Select the file to use as a proxy", de: "Wähle Datei um Proxy zu nutzen"};
+    rd_ApproximateData.strSelectProxyFolder = {en: "Select the folder for storing rendered proxies.", de: "Wähle Ordner, um gerenderte Proxys zu speichern."};
+    rd_ApproximateData.strHelp = {en: "?", de: "?"};
+    rd_ApproximateData.strNoItemToProxy = {en: "Please select at least one footage or composition item, then try again.", de: "Bitte wähle mindestens ein Footage oder eine Komposition und versuche es erneut."};
+    rd_ApproximateData.strNoProxiedItemToUnset = {en: "Please select at least one proxied item, then try again.", de: "Bitte wähle mindestens ein Proxy Item und versuche es erneut."};
+    rd_ApproximateData.strErrGetTpls = {en: "Couldn't retrieve the list of render settings and output module templates.", de: "Finde nicht die Liste der Render-Settings und der Output Module Templates."};
+    rd_ApproximateData.strErrRenameProxy = {en: "Could not rename proxy file to '%1'.", de: "Kann nicht die Proxy-Datei umbenennen zu '%1'."};
+    rd_ApproximateData.strMinAE100 = {en: "This script requires Adobe After Effects CS5 or later.", de: "Das Skript benötigt mindestens After Effects CS5 oder höher."};
     rd_ApproximateData.strHelpText = 
     {
         en: "Copyright (c) 2007-2013 redefinery (Jeffrey R. Almasol).\n" +
         "All rights reserved.\n" +
         "\n" +
         "This script creates, sets, or unsets proxies for the selected footage and composition items.\n" +
+        "\n" +
+        "If using a still or movie proxy, proxies will be rendered using existing render settings and output module template, preferably Best Settings / Photoshop for stills, and Draft Settings / Lossless with Alpha for movies.\n" +
+        "\n" +
+        "Note: If you want to use a still-frame or sequence proxy, make sure to set the output module template to a still-image format. Conversely, if you want to use a movie proxy, set the template to a movie file format.\n" + 
+        "\n" + 
+        "If using a file, you will be asked to select the file when you click the Set Proxy button. If using stills or movies, you are asked to select an output folder. Also, if using movies, you can select to keep the proxy the same name as the source, but the source file's format must be the same as the selected output module template's file format.\n" +
+        "\n" +
+        "Note: This version of the script requires After Effects CS5 or later. It can be used as a dockable panel by placing the script in a ScriptUI Panels subfolder of the Scripts folder, and then choosing this script from the Window menu.",
+        de: "Copyright (c) 2007-2013 redefinery (Jeffrey R. Almasol).\n" +
+        "All rights reserved.\n" +
+        "\n" +
+        "Dieses Skript erzeugt, setzt, löst Proxies für ausgewähltes Footage oder Kompoisitonen.\n" +
         "\n" +
         "If using a still or movie proxy, proxies will be rendered using existing render settings and output module template, preferably Best Settings / Photoshop for stills, and Draft Settings / Lossless with Alpha for movies.\n" +
         "\n" +
@@ -113,7 +125,8 @@
     //
     function rd_Approximate_localize(strVar)
     {
-        return strVar["en"];
+        var lang = app.isoLanguage.slice(0,2);
+        return strVar[lang];
     }
     
     
