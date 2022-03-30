@@ -53,15 +53,15 @@
 	// Globals
 
 	var rd_BatchLayerConverterData = new Object();	// Store globals in an object
-	rd_BatchLayerConverterData.scriptName = "rd: Batch Layer Converter";
+	rd_BatchLayerConverterData.scriptName = "Texte und Formen konvertieren";
 	rd_BatchLayerConverterData.scriptTitle = rd_BatchLayerConverterData.scriptName + " v0.9";
 
 	rd_BatchLayerConverterData.menuCommand = {
-		en: ["Convert to Editable Text or Layered Comp", "Create Shapes from Text", "Create Masks from Text", "Create Shapes from Vector Layer"],
-		de: ["In editierbaren Text konvertieren (PS)", "Erzeuge Formen aus Text", "Erzeuge Masken aus Text", "Erzeuge Formen aus Vektor-Ebenen"]
+		en: ["Convert to Editable Text or Layered Comp", "Create Shapes from Text", "Create Masks from Text", "Create Shapes from Vector Layer", "Create Shapes from Text in Layers"],
+		de: ["In editierbaren Text konvertieren (PS)", "Erzeuge Formen aus Text", "Erzeuge Masken aus Text", "Erzeuge Formen aus Vektor-Ebenen", "Erzeuge Formen aus Text in Ebenen"]
 	};
 	rd_BatchLayerConverterData.menuCommandID = {
-		en: [3799, 3781, 2933, 3973], de: [3799, 3781, 2933, 3973]
+		en: [3799, 3781, 2933, 3973, 3781], de: [3799, 3781, 2933, 3973, 3781]
 	};
 
 	rd_BatchLayerConverterData.strDeleteOrigLayer = {
@@ -198,6 +198,7 @@
 		comp.openInViewer();	// just to make sure the comp's panel is frontmost
 
 		// make a copy of the selected layers, in reverse layer order
+		// ??? Geht das nicht schneller mit CompItem.selectedLayers ???
 		var selLayers = new Array();
 		for (var i=comp.numLayers; i>0; i--) {
 			if (comp.layer(i).selected) {
@@ -216,7 +217,7 @@
 
 		// loop through the previously selected layers
 		var numLayersInComp = comp.numLayers;	// keep track of the original number of layers (so we know if any shape layer was actually created)
-		//for (var i=0; i<selLayers.length; i++) {
+
 		for (var i=selLayers.length-1; i>=0; i--) {
 			var l = selLayers[i];	// select each layer to process
 			l.selected = true;
@@ -233,8 +234,9 @@
 					lv.moveBefore(l);
 					lv.selected = false;
 					
+					// adding convertedLayer to lv-array
 					if ((cmdIndex === 1) && (lv instanceof ShapeLayer) && (l instanceof TextLayer))
-						convertedLayers[convertedLayers.length] = lv;
+						convertedLayers[convertedLayers.length] = lv; //geht hier nicht auch convertedLayers.push(lv) ????
 					else if ((cmdIndex === 2) && (lv instanceof AVLayer) && (l instanceof TextLayer))
 						convertedLayers[convertedLayers.length] = lv;
 					else if ((cmdIndex === 3) && (lv instanceof ShapeLayer) && (l instanceof AVLayer))
@@ -244,9 +246,24 @@
 					
 					if (removeOld)
 						l.remove();
+				} else if ((cmdIndex === 4) && (comp.numLayers !== numLayersInComp)) {
+					// converted layer is at the top of the comp, so move it just above the original vector layer
+					// das ist ein Bug, weil die Shape Layer nicht ganz nach oben geschoben werden
+					var lv = comp.layer(1);
+					lv.moveBefore(l);
+					lv.selected = false;
+					
+					// adding convertedLayer to lv-array
+					if ((cmdIndex === 4) && (lv instanceof ShapeLayer) && (l instanceof TextLayer))
+						convertedLayers[convertedLayers.length] = lv; //geht hier nicht auch convertedLayers.push(lv) ????
+					
+					
+					lv.motionBlur = l.motionBlur;	// retain original layer's motion blur setting
+					
+					if (removeOld)
+						l.remove();
 				}
 				else {
-					//alert("layer " + i.toString() + " skipped!");
 					var lv = comp.selectedLayers[0];
 					lv.selected = false;
 					
@@ -256,7 +273,7 @@
 			}
 			catch (e)
 			{
-				//alert("layer " + i.toString() + ": " + e.toString());
+				alert("layer " + i.toString() + ": " + e.toString());
 			}
 			numLayersInComp = comp.numLayers;
 		}
